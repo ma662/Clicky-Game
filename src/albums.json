@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "The College Dropout",
+    "image": "./assets/images/college_dropout.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Late Registration",
+    "image": "./assets/images/late_registration.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Graduation",
+    "image": "./assets/images/graduation.jpg"
+  },
+  {
+    "id": 4,
+    "name": "808s & Heartbreak",
+    "image": "./assets/images/808.png"
+  },
+  {
+    "id": 5,
+    "name": "My Beautiful Dark Twisted Fantasy",
+    "image": "./assets/images/fantasy.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Yeezus",
+    "image": "./assets/images/yeezus.png"
+  },
+  {
+    "id": 7,
+    "name": "The Life of Pablo",
+    "image": "./assets/images/pablo.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Ye",
+    "image": "./assets/images/ye.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Yandhi",
+    "image": "./assets/images/yandhi.jpg"
+  }
+]
