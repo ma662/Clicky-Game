@@ -1,37 +1,51 @@
-import React, { Component } from "react";
-// import FriendCard from "./components/FriendCard";
+import React, { Component, Fragment } from "react";
 
 // components
+import Title from "./components/Title";
 import Wrapper from "./components/Wrapper";
 import GameCard from "./components/GameCard";
-import Title from "./components/Title";
 
 // data
-// import friends from "./friends.json";
 import albums from "./albums.json";
 
 var clicked = [];
+let score = 0;
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
   state = {
-    // friends,
     clicked,
-    albums
+    albums,
+    score
   };
 
-  // removeFriend = id => {
-  //   // Filter this.state.friends for friends with an id not equal to the id being removed
-  //   const friends = this.state.friends.filter(friend => friend.id !== id);
-  //   // Set this.state.friends equal to the new friends array
-  //   this.setState({ friends });
-  // };
-
+  // function handles clicking, score incrementing, array shuffling of the state
   checkClicked = id => {
+    // lose condition
+    // if filter though clicked array and find the id, 
+    // the filter will return a larger than 0 array which means it's already been clicked 
+    if (clicked.filter(e => e.id === id).length > 0) {
+      alert("You've already clicked this! You Lose!");
+      return window.location.reload();
+    }
+
+    // score increment
+    var tScore = this.state.score;
+    tScore++;
+    console.log(tScore);
+    alert("Score: " + tScore);
+    
+    // push to clicked array
     // filter result of index 0 because always searching for one id and don't want too many nested arrays
     clicked.push(this.state.albums.filter(selection => selection.id === id)[0]);
-    console.log(clicked);
-    alert("click!");
+    console.log("clicked:", clicked);
+
+    // win condition
+    console.log(this.state.albums.length);
+    if (clicked.length === this.state.albums.length) {
+      alert("You've won the memory game!");
+      return window.location.reload();
+    }
     
     function shuffle(array) {
       var currentIndex = array.length, temporaryValue, randomIndex;
@@ -52,7 +66,6 @@ class App extends Component {
       return array;
     }
 
-    console.log(this.state.albums);
     // set temporary var for manipulation 
     let temp = this.state.albums;
     
@@ -62,15 +75,19 @@ class App extends Component {
     // setState
     this.setState({ 
       clicked: clicked,
-      albums: temp
-   });
+      albums: temp,
+      score: tScore
+    });
+
   };
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return (
+      <Fragment>
+
+      <Title>Kan-Ye Remember What Ye've Clicked?</Title>
       <Wrapper>
-      <Title>Can You Remember What You've Clicked?</Title>
         {this.state.albums.map(album => (
 
           <GameCard
@@ -82,19 +99,8 @@ class App extends Component {
           />
 
         ))}
-
-        {/* {this.state.friends.map(friend => (
-          <FriendCard
-            removeFriend={this.removeFriend}
-            id={friend.id}
-            key={friend.id}
-            name={friend.name}
-            image={friend.image}
-            occupation={friend.occupation}
-            location={friend.location}
-          />
-        ))} */}
       </Wrapper>
+      </Fragment>
     );
   }
 }
